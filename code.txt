@@ -1,0 +1,34 @@
+clear
+clc
+>> load('ssls05m.mat') %my blood pressure signal
+>> x1=val(1,:); %the signal doesn't have noticeable noise
+
+% Generate noise
+x = randn(1000,1);
+x1 = x(1:500);
+
+
+
+M = input('enter the desired length of the filter = ');
+B = (1/M) *ones(1,M);
+y = filter(B,1,x1);
+
+
+
+
+subplot (2,1,1)
+plot (x1)
+axis auto;
+xlabel('Time index n');
+ylabel('Amplitude');
+title('blood pressure signal with noise');
+grid;
+subplot (2,1,2)
+
+plot (y)
+axis auto;
+xlabel('Time index n');
+ylabel('Amplitude');
+title('blood pressure signal after filtering');
+
+grid;
